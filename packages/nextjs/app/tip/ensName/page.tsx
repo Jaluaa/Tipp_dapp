@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { parseEther, formatEther } from "viem";
-import { useAccount, useChainId, useSwitchChain, useBalance } from "wagmi";
+import { formatEther, parseEther } from "viem";
+import { useAccount, useBalance, useChainId } from "wagmi";
 
 export default function TipPage() {
   const params = useParams();
@@ -11,8 +11,7 @@ export default function TipPage() {
   const ensName = params?.ensName as string;
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
-  const { switchChain } = useSwitchChain();
-  
+
   const [tipAmount, setTipAmount] = useState("");
   const [tipMessage, setTipMessage] = useState("");
   const [isValidAmount, setIsValidAmount] = useState(false);
@@ -27,7 +26,9 @@ export default function TipPage() {
   // Get user's balance
   const { data: balance } = useBalance({
     address: address,
-    enabled: !!address && mounted,
+    query: {
+      enabled: !!address && mounted, // ✅ This is correct
+    },
   });
 
   // Mock creator data for testing
@@ -35,7 +36,7 @@ export default function TipPage() {
     isRegistered: true,
     totalTips: BigInt("1000000000000000000"), // 1 MATIC
     tipCount: 5,
-    creatorAddress: "0x123..."
+    creatorAddress: "0x123...",
   };
 
   // Validate tip amount
@@ -48,7 +49,7 @@ export default function TipPage() {
       }
 
       const amount = parseFloat(tipAmount);
-      
+
       if (isNaN(amount) || amount <= 0) {
         setIsValidAmount(false);
         setAmountError("Please enter a valid amount");
@@ -83,11 +84,11 @@ export default function TipPage() {
 
   const handleTip = async () => {
     if (!tipAmount || !isValidAmount || !isConnected) return;
-    
+
     // Mock tip sending
     console.log(`Sending ${tipAmount} MATIC to ${ensName}`);
     console.log(`Message: ${tipMessage}`);
-    
+
     // Simulate success
     setTipAmount("");
     setTipMessage("");
@@ -118,13 +119,8 @@ export default function TipPage() {
         <div className="text-center max-w-md">
           <div className="text-6xl mb-4">❌</div>
           <h1 className="text-4xl font-bold mb-4">Invalid URL</h1>
-          <p className="text-xl text-gray-600 mb-6">
-            No ENS name provided in the URL.
-          </p>
-          <button 
-            className="btn btn-primary"
-            onClick={() => router.push('/')}
-          >
+          <p className="text-xl text-gray-600 mb-6">No ENS name provided in the URL.</p>
+          <button className="btn btn-primary" onClick={() => router.push("/")}>
             Go Home
           </button>
         </div>
@@ -158,11 +154,13 @@ export default function TipPage() {
         {/* Debug Info */}
         <div className="alert alert-info mb-6">
           <div className="text-sm">
-            <p><strong>Debug Info:</strong></p>
+            <p>
+              <strong>Debug Info:</strong>
+            </p>
             <p>ENS: {ensName}</p>
-            <p>Connected: {isConnected ? 'Yes' : 'No'}</p>
+            <p>Connected: {isConnected ? "Yes" : "No"}</p>
             <p>Chain ID: {chainId}</p>
-            <p>Address: {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : 'Not connected'}</p>
+            <p>Address: {address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "Not connected"}</p>
           </div>
         </div>
 
@@ -187,9 +185,7 @@ export default function TipPage() {
                 ) : (
                   <div className="alert alert-success">
                     <span>✅ Connected to {getNetworkName()}</span>
-                    {balance && (
-                      <div>Balance: {Number(formatEther(balance.value)).toFixed(4)} MATIC</div>
-                    )}
+                    {balance && <div>Balance: {Number(formatEther(balance.value)).toFixed(4)} MATIC</div>}
                   </div>
                 )}
               </div>
@@ -200,10 +196,10 @@ export default function TipPage() {
                   <span className="label-text text-lg font-semibold">Quick Amounts (MATIC)</span>
                 </label>
                 <div className="grid grid-cols-5 gap-2">
-                  {quickAmounts.map((amount) => (
+                  {quickAmounts.map(amount => (
                     <button
                       key={amount}
-                      className={`btn btn-sm ${tipAmount === amount ? 'btn-primary' : 'btn-outline'}`}
+                      className={`btn btn-sm ${tipAmount === amount ? "btn-primary" : "btn-outline"}`}
                       onClick={() => setTipAmount(amount)}
                     >
                       {amount}
@@ -227,7 +223,7 @@ export default function TipPage() {
                     amountError ? "input-error" : isValidAmount && tipAmount ? "input-success" : ""
                   }`}
                   value={tipAmount}
-                  onChange={(e) => setTipAmount(e.target.value)}
+                  onChange={e => setTipAmount(e.target.value)}
                 />
                 {amountError && (
                   <div className="label">
@@ -251,7 +247,7 @@ export default function TipPage() {
                   className="textarea textarea-bordered w-full"
                   maxLength={280}
                   value={tipMessage}
-                  onChange={(e) => setTipMessage(e.target.value)}
+                  onChange={e => setTipMessage(e.target.value)}
                   rows={3}
                 />
                 <div className="label">
@@ -261,17 +257,15 @@ export default function TipPage() {
 
               {/* Send Tip Button */}
               <button
-                className={`btn btn-lg w-full mb-4 ${
-                  !isValidAmount ? 'btn-disabled' : 'btn-primary'
-                }`}
+                className={`btn btn-lg w-full mb-4 ${!isValidAmount ? "btn-disabled" : "btn-primary"}`}
                 onClick={handleTip}
                 disabled={!isValidAmount}
               >
-                Send {tipAmount || '0'} MATIC Tip 🚀
+                Send {tipAmount || "0"} MATIC Tip 🚀
               </button>
 
               <div className="text-center text-sm text-gray-600">
-                <p>💡 Tips are sent instantly to the creator's wallet</p>
+                <p>💡 Tips are sent instantly to the creator wallet</p>
                 <p>🔒 No platform fees • Secure transactions</p>
                 <p className="text-orange-500 mt-2">⚠️ This is currently a mock version for testing</p>
               </div>
