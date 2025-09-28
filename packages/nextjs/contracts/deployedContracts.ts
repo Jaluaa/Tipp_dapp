@@ -412,6 +412,269 @@ const deployedContracts = {
       deployedOnBlock: 3,
     },
   },
+  80002: {
+    TipJar: {
+      address: "0x891B849bC57F4724b7881Ad3b8f356535d963b97",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "string",
+              name: "ensName",
+              type: "string",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "wallet",
+              type: "address",
+            },
+          ],
+          name: "CreatorRegistered",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "string",
+              name: "ensName",
+              type: "string",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "tipper",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "TipSent",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "addressToEns",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          name: "creators",
+          outputs: [
+            {
+              internalType: "address payable",
+              name: "wallet",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "ensName",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "totalTips",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "tipCount",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isRegistered",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_ensName",
+              type: "string",
+            },
+          ],
+          name: "getCreator",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address payable",
+                  name: "wallet",
+                  type: "address",
+                },
+                {
+                  internalType: "string",
+                  name: "ensName",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "totalTips",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "tipCount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "isRegistered",
+                  type: "bool",
+                },
+              ],
+              internalType: "struct TipJar.Creator",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_ensName",
+              type: "string",
+            },
+          ],
+          name: "isCreatorRegistered",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_ensName",
+              type: "string",
+            },
+          ],
+          name: "registerCreator",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_ensName",
+              type: "string",
+            },
+          ],
+          name: "tip",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+      },
+      deployedOnBlock: 26981998,
+    },
+  },
 } as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
