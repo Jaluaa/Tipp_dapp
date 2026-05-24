@@ -6,9 +6,9 @@ interface MetaHeaderProps {
   description?: string;
 }
 
-export const MetaHeader = ({ 
-  title = "TipJar - Simple Crypto Tipping", 
-  description = "Send tips to creators using ENS names" 
+export const MetaHeader = ({
+  title = "Clapcoin - Simple Crypto Tipping",
+  description = "Send tips to creators using ENS names",
 }: MetaHeaderProps) => {
   return (
     <Head>

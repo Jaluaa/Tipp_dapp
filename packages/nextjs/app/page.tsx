@@ -11,7 +11,7 @@ const Home: NextPage = () => {
       <div className="flex items-center flex-col flex-grow pt-10">
         <div className="px-5">
           <h1 className="text-center mb-8">
-            <span className="block text-6xl font-bold">TipJar</span>
+            <span className="block text-6xl font-bold">Clapcoin</span>
             <span className="block text-2xl mb-2">Simple crypto tipping with ENS</span>
           </h1>
 
@@ -41,16 +41,14 @@ const Home: NextPage = () => {
               </p>
               <div className="w-full">
                 <p className="text-sm text-gray-500 mb-3">Have a tip link? Click it to get started!</p>
-                <p className="text-xs text-gray-400">
-                  Links look like: tipjar.app/tip/creator.eth
-                </p>
+                <p className="text-xs text-gray-400">Links look like: clapcoin.app/tip/creator.eth</p>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col items-center mt-16 px-4">
             <h3 className="text-3xl font-bold mb-8">How it works</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
               {/* Creator Flow */}
               <div className="bg-base-100 p-6 rounded-2xl shadow-md">
@@ -60,15 +58,21 @@ const Home: NextPage = () => {
                 </h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start">
-                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">1</span>
+                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      1
+                    </span>
                     <span>Connect your MetaMask wallet</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">2</span>
+                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      2
+                    </span>
                     <span>Register your ENS name</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">3</span>
+                    <span className="bg-primary text-primary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      3
+                    </span>
                     <span>Share your unique tip link with fans</span>
                   </div>
                 </div>
@@ -82,15 +86,21 @@ const Home: NextPage = () => {
                 </h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start">
-                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">1</span>
-                    <span>Click creator's tip link</span>
+                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      1
+                    </span>
+                    <span>Click {"creator's"} tip link</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">2</span>
+                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      2
+                    </span>
                     <span>Connect MetaMask (auto-switch to Polygon)</span>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">3</span>
+                    <span className="bg-secondary text-secondary-content rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 text-xs font-bold">
+                      3
+                    </span>
                     <span>Enter tip amount and send instantly</span>
                   </div>
                 </div>
